@@ -47,37 +47,36 @@
   }
 .odd-square {
     background-color: black!important;
+    position: relative;
 }
 .even-square {
     background-color: white!important;
+    position: relative;
+}
+
+.checkeredBoard {
+    display: grid;
+    border: 1px solid black;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 @media screen and (width < 200px) {
     .checkeredBoard {
-        display: grid;
-        border: 1px solid black;
         width: 200px;
         height: 200px;
         flex-shrink: 0;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 @media screen and (width > 200px) and (width < 420px)  {
   .checkeredBoard {
-      display: grid;
-      border: 1px solid black;
       width: 100vw;
       height: 100vw;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 @media screen and (width >= 420px)  {
   .checkeredBoard {
-      display: grid;
-      border: 1px solid black;
       width: calc((420px) + ((100vw - 420px)/5));
       height: calc((420px) + ((100vw - 420px)/5));
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 }
 .checkeredBoardContainer {

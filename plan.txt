@@ -1,0 +1,4 @@
+next steps
+
+1 refactoring
+2 add black pieces that interact correctly with white
