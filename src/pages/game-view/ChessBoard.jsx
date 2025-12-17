@@ -8,6 +8,7 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
     const [mapOfSquareContents, setMapOfSquareContents] = useState({});
     const [squareToMoveFrom, setsquareToMoveFrom] = useState('');
     const [movingPiece, setmovingPiece] = useState({});
+    const [controlChessPosition, setcontrolChessPosition] = useState('');
 
     const chessBoardColumns = 'HGFEDCBA';
 
@@ -85,6 +86,7 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
         </>
     );
 
+
     function selectSquare(event) {  
         arrOfChessboardCoordinatesAndInstances = { ...mapOfSquareContents };
         
@@ -92,6 +94,20 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
 
         let chessPosition = event.target.closest(`svg`).parentElement.attributes?.chessposition?.value ||
             event.target.attributes?.chessposition.value;
+
+        if (chessPosition == controlChessPosition) {
+            //selection is cancelled
+            Object.entries(arrOfChessboardCoordinatesAndInstances).forEach(coord => {
+                if (document.getElementById(coord[0]).querySelector('svg')?.attributes.piece?.nodeValue == 'dot' || document.getElementById(coord[0]).querySelector('svg')?.attributes.piece?.nodeValue == 'castlingDot') {
+                    arrOfChessboardCoordinatesAndInstances[coord[0]].coordinateInstance = <>
+                    </>
+                }
+            })
+            setcontrolChessPosition('');
+            setMapOfSquareContents(arrOfChessboardCoordinatesAndInstances);
+            return;
+
+        } else setcontrolChessPosition(chessPosition);
             
         let type = '';
         let isFirstMove = '';
