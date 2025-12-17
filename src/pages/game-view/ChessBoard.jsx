@@ -95,6 +95,8 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
         let chessPosition = event.target.closest(`svg`).parentElement.attributes?.chessposition?.value ||
             event.target.attributes?.chessposition.value;
 
+        console.log(chessPosition)
+        console.log(controlChessPosition)
         if (chessPosition == controlChessPosition) {
             //selection is cancelled
             Object.entries(arrOfChessboardCoordinatesAndInstances).forEach(coord => {
@@ -172,6 +174,7 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
                     }
                 }
             })
+            setcontrolChessPosition('');
             setMapOfSquareContents(arrOfChessboardCoordinatesAndInstances);
             return;
         };
@@ -197,6 +200,7 @@ function ChessBoard({initialize, communicateChessboardIsSet}) {
                 isAnyCastlingPathFree(chessPosition);
             }
         }
+        setcontrolChessPosition('');
         setMapOfSquareContents(arrOfChessboardCoordinatesAndInstances);
     }
 
